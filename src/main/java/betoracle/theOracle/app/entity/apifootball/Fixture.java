@@ -2,6 +2,9 @@ package betoracle.theOracle.app.entity.apifootball;
 
 import java.sql.Date;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import betoracle.theOracle.app.object.apifootball.Venue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +18,7 @@ public class Fixture {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private String id;
 	private Date date;
 	//@ManyToOne
 	private Venue venue;
@@ -24,6 +27,13 @@ public class Fixture {
 	private String referee;
 	private String timestamp;
 	private FixtureStatus status;
+	
+	capire che tabelle creare e che relazioni devono avere
+	
+	@CreatedDate
+	private Date createdDate;
+	@LastModifiedDate
+	private Date lastModifiedDate;
 
 }
 

@@ -204,31 +204,38 @@ public class RestControllerAPIFootball {
 																// extract values inside
 				JSONObject record = responseArray.getJSONObject(i); // each item of Array is a JSON object
 				String fixtureId = null;
+				String fixtureTimeZone = null;
 				
 				if (record.has("fixture")) {
 					log.info("fixtureObject: " + record.getJSONObject("fixture").toString() + "\n");
 					JSONObject fixtureJSON = record.getJSONObject("fixture");
 					fixtureId = String.valueOf(fixtureJSON.getInt("id"));
+					fixtureTimeZone=fixtureJSON.getString("timezone");
+					
 					fixtureNumbersMap.put(fixtureId+"-F", fixtureJSON);
 				}
 				if (record.has("league")) {
 					log.info("leagueObject: " + record.getJSONObject("league").toString() + "\n");
 					JSONObject leagueJSON = record.getJSONObject("league");
+					
 					fixtureNumbersMap.put(fixtureId+"-L", leagueJSON);
 				}
 				if (record.has("teams")) {
 					log.info("teamsObject: " + record.getJSONObject("teams").toString() + "\n");
 					JSONObject teamsJSON = record.getJSONObject("teams");
+					
 					fixtureNumbersMap.put(fixtureId+"-T", teamsJSON);
 				}
 				if (record.has("goals")) {
 					log.info("goalsObject: " + record.getJSONObject("league").toString() + "\n");
 					JSONObject goalsJSON = record.getJSONObject("league");
+					
 					fixtureNumbersMap.put(fixtureId+"-G", goalsJSON);
 				}
 				if (record.has("score")) {
 					log.info("scoreObject: " + record.getJSONObject("score").toString() + "\n");
 					JSONObject scoreJSON = record.getJSONObject("score");
+					
 					fixtureNumbersMap.put(fixtureId+"-S", scoreJSON);
 				}
 			}
