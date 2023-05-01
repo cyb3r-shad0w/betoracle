@@ -1,4 +1,4 @@
-package betoracle.theOracle.app.object.apifootball;
+package betoracle.theOracle.app.apifootball.object;
 
 import lombok.Data;
 
