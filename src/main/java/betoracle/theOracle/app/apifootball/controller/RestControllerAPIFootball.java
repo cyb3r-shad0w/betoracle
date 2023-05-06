@@ -1,4 +1,4 @@
-package betoracle.theOracle.app.controller;
+package betoracle.theOracle.app.apifootball.controller;
 
 import java.io.IOException;
 import java.net.URI;
@@ -29,8 +29,11 @@ import betoracle.theOracle.app.apifootball.object.Status;
 import betoracle.theOracle.app.apifootball.repository.FixtureRepository;
 import betoracle.theOracle.app.apifootball.repository.VenueRepository;
 
-@RestController(value = "/apifootballv1")
+@RestController(value = "/apifootballv3")
 public class RestControllerAPIFootball {
+
+	//TODO: refactor del codice, separare logica di controller da quella dei service che ho invece mischiato,
+	// ad esempio posso creare un service che setta i link da interrogare oppure un service che estrae dati e crea i vari JSON
 
 	private Logger log = LoggerFactory.getLogger(RestControllerAPIFootball.class);
 
@@ -51,7 +54,7 @@ public class RestControllerAPIFootball {
 	 * 
 	 * fixtureNumber is required
 	 */
-	@GetMapping("/apifootballv1/predictions/{fixtureNumber}")
+	@GetMapping("/apifootballv3/predictions/{fixtureNumber}")
 	@ResponseBody
 	String predictions(@PathVariable String fixtureNumber) {
 
@@ -154,7 +157,7 @@ public class RestControllerAPIFootball {
 	 * 
 	 * @throws Exception
 	 **/
-	@GetMapping("/apifootballv1/fixturesByStatus/{league}/{season}/{fixtureStatus}")
+	@GetMapping("/apifootballv3/fixturesByStatus/{league}/{season}/{fixtureStatus}")
 	@ResponseBody
 	String fixturesByStatus(@PathVariable String league, @PathVariable String season,
 			@PathVariable String fixtureStatus) throws Exception {
@@ -204,7 +207,7 @@ public class RestControllerAPIFootball {
 
 			responseBodyJSON = new JSONObject(response.body());
 
-			System.out.println(responseBodyJSON.toString());
+			log.info(responseBodyJSON.toString());
 
 			responseArray = responseBodyJSON.getJSONArray("response"); // get response which is a JSON object inside
 																		// response
@@ -389,7 +392,7 @@ public class RestControllerAPIFootball {
 	 * 
 	 * @return consumption in real time
 	 */
-	@GetMapping("/apifootballv1/status")
+	@GetMapping("/apifootballv3/status")
 	@ResponseBody
 	Status getStatus() {
 
